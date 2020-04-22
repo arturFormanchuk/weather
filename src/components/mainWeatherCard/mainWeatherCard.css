@@ -1,0 +1,37 @@
+.card{
+  width: 100%;
+  height: 48%;
+  background-image: url(backgroundhoriz.png);
+  background-size: 100%;
+  border-radius: 30px;
+}
+
+.opacity{
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: rgba(255,255,255,0.2) ;
+  padding: 60px 150px;
+  color: snow;
+
+}
+.city{
+  font-size: 32px;
+  font-weight: 600;
+}
+.worldMap{
+  width: 200px;
+  height: 100px;
+}
+
+.info{
+  padding-left: 15px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.color{
+  color: #353688;
+}
+.country{
+  margin-left: 34px;
+}

@@ -1,0 +1,39 @@
+.form{
+  width: 40%;
+  margin: 0 auto;
+  padding: 25px;
+}
+.form input{
+  width: 85%;
+  height: 35px;
+  padding-left: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: #181C3A;
+  color: snow;
+  border: 2px solid #7768E5;
+  outline:none;
+}
+
+
+.form button{
+  width: 15%;
+  height: 35px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #7768E5;
+  border: none;
+  color: snow;
+  transition: all .3s;
+  outline:none;
+}
+
+.form button:hover{
+  background-color: #090D27;
+  border: 2px solid #7768E5;
+
+}
+
+.error{
+  background-color: lightcoral!important;
+}
