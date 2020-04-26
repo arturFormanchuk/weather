@@ -13,7 +13,7 @@ const OneDayWeather = (props) => {
             </div>
             <div className="centerOne">
               <div><span>{date[0]}</span></div>
-              <div><p>{props.day.weather[0].main}</p></div>
+              <div><p>{props.day.weather[0].description}</p></div>
             </div>
             <div className={props.isActive===props.day.dt? 'activeColor rightOne' : 'rightOne'}>
               <p><span>{Math.round(props.day.temp.day)}</span>° / <span>{Math.round(props.day.temp.min)}</span>°</p>

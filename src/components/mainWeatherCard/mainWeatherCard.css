@@ -4,6 +4,7 @@
   background-image: url(backgroundhoriz.png);
   background-size: 100%;
   border-radius: 30px;
+  position: relative;
 }
 
 .opacity{

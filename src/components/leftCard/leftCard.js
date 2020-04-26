@@ -12,7 +12,7 @@ export const LeftCard = (props) => {
         </div>
         <div className='bottom'>
           <p className='grades weight'>{Math.round(props.temp)}<span className='grades'>°С</span></p>
-          <p className='weatherTitle'>{props.img.main}</p>
+          <p className='weatherTitle'>{props.img.description}</p>
         </div>
       </div>
     </div>

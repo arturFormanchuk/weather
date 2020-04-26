@@ -9,7 +9,7 @@
   padding-left: 20px;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
-  background-color: #181C3A;
+  background-color: #FFFFFF;
   color: snow;
   border: 2px solid #7768E5;
   outline:none;
@@ -29,7 +29,8 @@
 }
 
 .form button:hover{
-  background-color: #090D27;
+  background-color: #FFFFFF;
+  color: black;
   border: 2px solid #7768E5;
 
 }

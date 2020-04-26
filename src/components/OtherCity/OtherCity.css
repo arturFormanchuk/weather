@@ -1,0 +1,105 @@
+.Other{
+  width: 80%;
+  margin: 0 auto 25px auto;
+  box-shadow: 0px 27px 57px 6px rgba(0,0,0,0.47);
+  height: 130px;
+  background-color: #DDDDDD;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.otherTop{
+  height: 73%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+}
+
+.otherTopLeft{
+  width: 30%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #7768E5;
+  padding: 5px;
+
+}
+
+.otherTopCenter{
+  width: 25%;
+  height: 100%;
+  padding: 20px 7px 25px 22px;
+}
+
+.otherTopCenter span{
+  font-size: 38px;
+  color: black;
+  font-weight: 600;
+}
+
+.otherTopCenter p{
+  color: #7768E5;
+  font-size: 38px;
+  font-weight: 300;
+}
+
+.otherTopRight{
+  width: 45%;
+  height: 100%;
+  border-radius: 20px;
+  padding-top: 20px;
+
+}
+
+.otherTopRight span{
+  font-size: 26px;
+  color: black;
+  font-weight: 600;
+}
+
+.otherTopRight p{
+  font-size: 14px;
+  color: gray;
+  font-weight: 400;
+}
+
+.borderLeft{
+  border-left: 2px solid grey ;
+  padding-left: 10px;
+}
+.otherBottom{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 8px;
+
+}
+
+.bottomLeft{
+  width: 33%;
+  padding-left:8px;
+}
+
+.bottomLeft span{
+  font-weight: 300;
+  font-size: 12px;
+  color: gray;
+  border-right: 1px solid gray ;
+  padding-right: 10px;
+
+}
+.absolute{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+  transition: all .3s;
+  color: gray;
+}
+
+.absolute:hover{
+  color: #7768E5;
+}

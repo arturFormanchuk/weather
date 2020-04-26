@@ -8,8 +8,10 @@ import OneDayWeather from "./components/OneDayWeather/OneDayWeather";
 import MainInfo from "./components/mainInfo/MainInfo";
 import Header from "./components/header/Header";
 import Loader from "./components/Loader/Loader";
+import {AddLocation} from "./components/AddLocation/AddLocation";
+import {OtherCity} from "./components/OtherCity/OtherCity";
 
-const API ='e10d08488ef3e82b39e00383eb12b2f7';
+const API ='e0e763316f96e5d778ab8ecf7c95b8f2';
 
 class App extends Component {
 
@@ -26,11 +28,13 @@ class App extends Component {
     oneDayFeels:[],
     isLoaded:false,
     input:null,
-    mistake:false
+    mistake:false,
+    locations:[],
+    otherCity:[]
   };
 
   getWeather = async() => {
-    const fetchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lviv&appid=${API}&units=metric`);
+    const fetchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lviv&appid=${API}&units=metric&lang=uk`);
     const data = await fetchData.json();
     console.log(data);
     this.setState({
@@ -38,9 +42,11 @@ class App extends Component {
       country: data.sys.country,
       temp: data.main.temp,
       img: data.weather[0],
-      cord: data.coord
+      cord: data.coord,
+
     });
-    const fetchData2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.cord.lat}&lon=${this.state.cord.lon}&appid=${API}&units=metric`);
+    // this.fetchSeven(this.state.cord.lat, this.state.cord.lon);
+    const fetchData2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.cord.lat}&lon=${this.state.cord.lon}&appid=${API}&units=metric&lang=uk`);
     const data2 = await fetchData2.json();
     this.setState({
       weatherWeek: data2.daily,
@@ -49,11 +55,10 @@ class App extends Component {
       oneDayTemp: data2.daily[0].temp,
       oneDayFeels: data2.daily[0].feels_like,
       isLoaded: !this.state.isLoaded
+
     });
-    console.log(data2.daily[0]);
-    const date = new Date(this.state.weatherWeek[0].dt);
-    console.log(this.state.oneDay);
   };
+
 
   changeDay = (day) =>{
     this.setState({isActive:day.dt, oneDay:day, oneDayTemp:day.temp, oneDayFeels:day.feels_like} )
@@ -67,6 +72,45 @@ class App extends Component {
     this.fetchSearch();
   };
 
+  addi= async(e)=>{
+    e.preventDefault();
+    const city = e.target.elements.city.value;
+    const loc = [...this.state.locations];
+    localStorage.setItem('Cities', JSON.stringify(loc));
+    const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API}&units=metric&lang=ua`)
+    const otherData = await resp.json()
+    const positions = [...this.state.otherCity];
+    positions.push(otherData);
+    loc.push(otherData.name);
+    this.setState({otherCity:positions,locations:loc});
+    console.log(this.state.otherCity);
+  };
+
+  delete=(city)=>{
+    const list = this.state.otherCity;
+    const filtered = list.filter((fil)=>{
+      return fil!==city
+    });
+    const list2 = JSON.parse(localStorage.getItem('Cities'));
+    const filtList2 = list2.filter((el)=>(el.name!==city.name));
+    localStorage.setItem('Cities', JSON.stringify(filtList2));
+    this.setState({otherCity:filtered});
+  };
+
+  fetchInCycle=async()=>{
+    if(this.state.locations) {
+      for (const city of this.state.locations) {
+        const fetchDataCycle = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API}&units=metric&lang=ua`);
+        const dataCycle = await fetchDataCycle.json();
+        const add = [...this.state.otherCity];
+        await add.push(dataCycle);
+        this.setState({otherCity: add})
+        console.log(this.state.otherCity);
+
+      }
+    }
+  };
+
   fetchSearch=async()=>{
     try{
       const fetchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.input}&appid=${API}&units=metric&lang=ua`);
@@ -78,7 +122,7 @@ class App extends Component {
         img: data.weather[0],
         cord: data.coord
       });
-      const fetchData2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.cord.lat}&lon=${this.state.cord.lon}&appid=${API}&units=metric`);
+      const fetchData2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.cord.lat}&lon=${this.state.cord.lon}&appid=${API}&units=metric&lang=uk`);
       const data2 = await fetchData2.json();
       this.setState({
         weatherWeek: data2.daily,
@@ -97,11 +141,21 @@ class App extends Component {
 
   };
 
-  componentDidMount(){
-    this.getWeather();
+  componentWillMount() {
 
-
+    const val = (JSON.parse(localStorage.getItem('Cities')));
+    console.log(val);
+    if (val) {
+      this.setState({locations: val});
+    }
   }
+
+  componentDidMount(){
+
+    this.getWeather();
+    this.fetchInCycle();
+  }
+
 
   render() {
     return (
@@ -129,7 +183,15 @@ class App extends Component {
               {this.state.isLoaded? <MainInfo oneDay={this.state.oneDay} oneDayTemp={this.state.oneDayTemp}
                                              oneDayFeels={this.state.oneDayFeels}/> : ''}
             </div>
-            <div></div>
+            <div className='mainBRight' >
+              <AddLocation addi={this.addi}>
+                {this.state.otherCity.map((city)=>{
+                  return(
+                    <OtherCity city={city} delete={()=>(this.delete(city))}/>
+                  )
+                })}
+              </AddLocation>
+            </div>
           </div>
 
 
