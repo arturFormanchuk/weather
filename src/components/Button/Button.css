@@ -1,0 +1,10 @@
+.positionButton{
+  text-decoration: none;
+  position: absolute;
+  font-size: 24px;
+  color: #7768E5;
+  cursor: pointer;
+  right: 25px;
+  top: 15px;
+
+}

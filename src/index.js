@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {DarkModeWrapper} from "./components/DarkModeWrapper/DarkModeWrapper";
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <DarkModeWrapper>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </DarkModeWrapper>,
   document.getElementById('root')
 );
 

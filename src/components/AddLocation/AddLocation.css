@@ -3,7 +3,15 @@
   position: absolute;
   z-index: 999;
   top: 300px;
+  height: auto;
+  min-height: 130px;
+  transition: min-height 1.5s;
 }
+
+.posRightAddDark{
+  background-color: #181C3A!important; ;
+}
+
 .formAdd{
   width: 80%;
   margin: 0 auto;

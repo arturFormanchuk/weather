@@ -8,6 +8,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+}
+
+.OtherDark{
+  background-color: #181C3A;
 }
 
 .otherTop{
@@ -39,6 +44,10 @@
   font-weight: 600;
 }
 
+.otherTopCenterDark span{
+  color: snow !important;
+}
+
 .otherTopCenter p{
   color: #7768E5;
   font-size: 38px;
@@ -59,6 +68,10 @@
   font-weight: 600;
 }
 
+.otherTopRightDark span{
+  color: snow !important;
+}
+
 .otherTopRight p{
   font-size: 14px;
   color: gray;
@@ -73,14 +86,14 @@
   width: 100%;
   height: 25%;
   display: flex;
-  justify-content: space-around;
+
   padding: 5px 8px;
 
 }
 
 .bottomLeft{
   width: 33%;
-  padding-left:8px;
+  padding-left:5px;
 }
 
 .bottomLeft span{
@@ -98,6 +111,7 @@
   cursor: pointer;
   transition: all .3s;
   color: gray;
+  z-index: 9999;
 }
 
 .absolute:hover{

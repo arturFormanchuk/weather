@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import './OtherCity.css'
-
+import {DarkMode} from "../DarkModeWrapper/DarkModeWrapper";
 // base: "stations"
 // clouds: {all: 20}
 // cod: 200
@@ -32,35 +32,38 @@ import './OtherCity.css'
 // __proto__: Object
 
 export const OtherCity = (props) => {
-
+  const theme = useContext(DarkMode)
   return (
-    <div className='Other'>
-      <div className='absolute' onClick={props.delete}><i className="fas fa-times"/></div>
-      <div className='otherTop'>
-        <div className='otherTopLeft'>
+    <div className={theme.darkMode ? 'OtherDark Other' : 'Other'} >
+      <div >
+        <div className='absolute' onClick={props.delete}><i className="fas fa-times"/></div>
+        <div className='otherTop' onClick={props.changeCity}>
+          <div className='otherTopLeft'>
           <span>
-            <img className='imgOne' src={`http://openweathermap.org/img/wn/${props.city.weather[0].icon}@2x.png`}  alt=""/>
+            <img className='imgOne' src={`http://openweathermap.org/img/wn/${props.city.weather[0].icon}@2x.png`}
+                 alt=""/>
           </span>
-        </div>
-        <div className='otherTopCenter'>
-          <p><span>{Math.round(props.city.main.temp)}</span>°</p>
-        </div>
-        <div className='otherTopRight'>
-          <div className='borderLeft'>
-            <span>{props.city.name}</span>
-            <p>{props.city.sys.country}</p>
+          </div>
+          <div className={theme.darkMode ? 'otherTopCenterDark otherTopCenter' : 'otherTopCenter'}>
+            <p><span>{Math.round(props.city.main.temp)}</span>°</p>
+          </div>
+          <div className={theme.darkMode ? 'otherTopRightDark otherTopRight' : 'otherTopRight'}>
+            <div className='borderLeft'>
+              <span>{props.city.name}</span>
+              <p>{props.city.sys.country}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className='otherBottom'>
-        <div className='bottomLeft'>
-          <span>Humidity: {props.city.main.humidity}%</span>
-        </div>
-        <div className='bottomLeft'>
-          <span>Pressure: {props.city.main.pressure}</span>
-        </div>
-        <div className='bottomLeft'>
-          <span>Wind: {props.city.wind.speed}</span>
+        <div className='otherBottom'>
+          <div className='bottomLeft'>
+            <span>Humidity: {props.city.main.humidity}%</span>
+          </div>
+          <div className='bottomLeft'>
+            <span>Pressure: {props.city.main.pressure}</span>
+          </div>
+          <div className='bottomLeft'>
+            <span>Wind: {props.city.wind.speed}m/s</span>
+          </div>
         </div>
       </div>
     </div>

@@ -22,3 +22,17 @@
   color: black;
   font-size: 22px;
 }
+
+.mainInfoBodyDark{
+  background-color: #181C3A;
+}
+
+.mainInfoBodyDark h1{
+  color: snow!important;
+}
+.mainInfoBodyDark h2{
+  color: snow!important;
+}
+.mainInfoBodyDark span{
+  color: snow!important;
+}
